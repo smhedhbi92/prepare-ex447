@@ -7,7 +7,7 @@
   hosts: all
   tasks:
     - name: install httpd
-      yum:
+      package:
         name: httpd
         state: latest
     - name: httpd is running
