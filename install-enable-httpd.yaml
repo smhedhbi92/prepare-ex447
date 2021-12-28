@@ -1,0 +1,15 @@
+---
+- name: install and enable httpd service
+  hosts: localhost
+  become: true
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
+    - name: start httpd
+      ansible.builtin.service:
+        name: httpd
+        state: started
