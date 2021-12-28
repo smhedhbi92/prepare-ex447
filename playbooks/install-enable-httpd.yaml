@@ -1,7 +1,6 @@
 ---
 - name: install and enable httpd service
-  hosts: all
-  become: true
+  hosts: all_servers
   become_user: root
   become_method: sudo
   tasks:
