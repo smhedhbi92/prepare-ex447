@@ -1,0 +1,12 @@
+---
+- name: execution order demontration
+  hosts: managedh1
+  order: shuffle
+  become: true
+  pre_tasks:
+    - name: add maintenance message
+      copy:
+        dest: /etc/motd.d/maintenance
+        content: 'Maintenance in progress'
+  roles:
+    - role: httpdDeploy

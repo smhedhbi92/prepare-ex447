@@ -1,0 +1,4 @@
+db_appservers:
+  - name: managedh2
+    ip: 18.188.205.245
+    svc: mariadb

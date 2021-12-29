@@ -1,0 +1,4 @@
+web_appservers:
+  - name: managedh1
+    ip: 3.141.2.135
+    svc: httpd

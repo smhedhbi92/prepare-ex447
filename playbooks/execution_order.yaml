@@ -1,0 +1,17 @@
+---
+- name: execution order demontration
+  hosts: managedh1
+  order: sorted
+  become: true
+  pre_tasks:
+    - name: add maintenance message
+      copy:
+        dest: /etc/motd.d/maintenance
+        content: 'Maintenance in progress'
+  roles:
+    - role: httpdDeploy
+  post_tasks:
+    - name: delete maintenance message
+      file:
+        path: /etc/motd.d/maintenance
+        state: absent
