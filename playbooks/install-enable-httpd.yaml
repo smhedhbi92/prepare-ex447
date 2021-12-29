@@ -7,7 +7,14 @@
   tasks:
     - name: install httpd
       yum:
-        name: httpd
+        name:
+          - httpd
+          - mod_ssl
+          - httpd-tools
+          - mariadb-server
+          - mariadb
+          - php
+          - php-mysqlnd
         state: latest
     - name: execute all notified handlers
       meta: flush_handlers
@@ -16,6 +23,10 @@
         name: httpd_role
     - name: enable httpd service
       ansible.builtin.service:
-        name: httpd
+        name: "{{ item }}"
         state: started
+        enabled: yes
+      loop:
+        - httpd
+        - mariadb
 ...

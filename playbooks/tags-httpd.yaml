@@ -1,19 +1,25 @@
 ---
 - name: install httpd service
-  hosts: all
-  become: true
-  become_user: root
-  become_method: sudo
+  hosts: managedh1
+  become: false
+  gather_facts: no
+  tags:
+    - setup
+  roles:
+    - role: httpdDeploy
+      tags:
+        - production
+        - staging
   tasks:
     - name: install httpd
       yum:
         name: httpd
         state: latest
+      become: true
+      tags:
+        - install
     - name: execute all notified handlers
       meta: flush_handlers
-    - name: include role
-      include_role:
-        name: httpd_role
     - name: enable httpd service
       ansible.builtin.service:
         name: httpd
