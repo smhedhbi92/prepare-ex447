@@ -1,0 +1,26 @@
+- name: filters lab
+  hosts: localhost
+  vars:
+    hosts:
+      - name: bastion
+        ip:
+          - 172.25.250.254
+          - 172.25.252.1
+      - name: classroom
+        ip:
+          - 172.25.251.222
+  tasks:
+    - name: Dispaly vars
+      debug:
+        msg: "{{ item[0] }}"
+#       msg: "{{ hosts | json_query('[*].name') }}"
+#       msg: "{{ hosts | to_nice_json }}"
+#       msg: "{{ query('file', '/etc/hosts', '/etc/issue') }}"        
+#       msg: "{{ lookup('env', 'HOME') }}"
+#       msg: "{{ query('lines', 'ls /') }}"
+      loop:
+        - "{{ query('lines', 'cat /tmp/file') }}"
+        - "{{query('lines', 'cat /tmp/file2') }}"
+      tags:
+        - filters
+        - plugins

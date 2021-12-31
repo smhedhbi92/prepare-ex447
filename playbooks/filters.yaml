@@ -1,0 +1,9 @@
+- name: filters lab
+  hosts: localhost
+  vars:
+    my_string: df -h
+    my_string_quote: "{{ my_string | quote }}"
+  tasks:
+    - name: labA
+      debug: 
+        msg: "{{ my_string_quote }}"
