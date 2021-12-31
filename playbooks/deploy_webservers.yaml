@@ -3,6 +3,11 @@
   hosts: all
   become: True
   gather_facts: False
+  pre_tasks:
+    - name: setting the maintenance message
+      copy:
+        dest: /tmp/site.ready
+        content: "Playbook site.yaml is ready to start"
   tasks:
     - name: ensure required package is installed
       yum:
